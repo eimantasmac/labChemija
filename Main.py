@@ -1,16 +1,26 @@
 import TableScrapper
+import FeatureFinder
 import re
 from sklearn import tree
 import wikipedia
 
 table = TableScrapper.Table.GetTable('https://en.wikipedia.org/wiki/Gold')
 
-feature = 'Covalent radius'
-for line in table:
-    print(line)
-    match = re.search('Covalent radius(\d+)', line)
-    if match:
-        print(match.group(1))
+ats = FeatureFinder.FindFeature('Covalent radius', table)
+print(int(ats[0]))
+
+# feature = 'Covalent radius'
+# found = False
+# for line in table.splitlines():
+#     if found:
+#         print(line)
+#         found = False
+#     match = re.search(feature, line)
+#     if match:
+#         #print(match.group(0))
+#         found = True
+
+
 
 # print(table)
 

@@ -4,10 +4,12 @@ from bs4 import BeautifulSoup
 
 
 class Table:
+
     def GetTable(url):
         html = urllib.request.urlopen(url).read()
         soup = BeautifulSoup(html, "html.parser")
         list_of_rows = []
+        all_tables = ""
         for table in soup.findAll('table', {'class': 'infobox'}):
 
             # remove all extra tags in the HTML Tables
@@ -23,6 +25,8 @@ class Table:
                     list_of_cells.append(cell.text)
                 list_of_rows.append(list_of_cells)
 
-        table = str(table)
-        table = re.sub ('<[^>]+>', '', table)
-        return table
+            all_tables += str(table)
+
+        all_tables = re.sub ('<[^>]+>', '', all_tables)
+        # print(all_tables)
+        return all_tables

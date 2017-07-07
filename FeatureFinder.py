@@ -5,13 +5,13 @@ def FindFeature(feature, table):
     # feature = 'Covalent radius'
     found = False
     for line in table.splitlines():
+
         if found:
-            #print(line)
+
             nr = ExtractNumber(line)
             return nr
         match = re.search(feature, line)
         if match:
-            # print(match.group(0))
             found = True
 
 
